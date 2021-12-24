@@ -1,2 +1,3 @@
 - ## Graph problems
-  * Counting Rooms 
+  * Counting Rooms . BFS deque / DFS floodfill
+  * Shortest Routes I . Dijkstra
