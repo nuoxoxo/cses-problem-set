@@ -14,7 +14,6 @@
 #include <iostream>
 #include <deque>
 #include <tuple>
-//#include <sstream>
 #include <vector>
 
 using   namespace std;
@@ -29,6 +28,7 @@ int     main(void)
         vector<int>             dc = { 0, 1, 0, -1};
 
         cin >> R >> C;
+
         vector<vector<int>> DOTS(R, vector<int>(C, false));
         vector<vector<int>> SEEN(R, vector<int>(C, false));
 
@@ -47,24 +47,23 @@ int     main(void)
             j = -1;
             while (++j < C)
             {
-                if ( DOTS[i][j] && !SEEN[i][j] )
+                if (!DOTS[i][j] || SEEN[i][j])  continue ;
+                
+                deque<pair<int, int>>   Q;
+
+                count ++ ;
+                Q.push_back({ i, j });
+                while (!Q.empty())
                 {
-                    deque<pair<int, int>>   Q;
+                    int     r, c, d;
 
-                    count ++ ;
-                    Q.push_back({ i, j });
-                    while (!Q.empty())
-                    {
-                        int     r, c, d;
-
-                        tie(r, c) = Q.front();
-                        Q.pop_front() ;
-                        if (r >= R || r < 0 || c >= C || c < 0) continue;
-                        if (!DOTS[r][c] || SEEN[r][c])  continue;
-                        SEEN[r][c] = true;
-                        d = -1;
-                        while (++d < 4) Q.push_back({r + dr[d], c + dc[d]});
-                    }
+                    tie(r, c) = Q.front();
+                    Q.pop_front() ;
+                    if (r >= R || r < 0 || c >= C || c < 0) continue;
+                    if (!DOTS[r][c] || SEEN[r][c])  continue;
+                    SEEN[r][c] = true;
+                    d = -1;
+                    while (++d < 4) Q.push_back({r + dr[d], c + dc[d]});
                 }
             }
         }
