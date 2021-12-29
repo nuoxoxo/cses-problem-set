@@ -22,10 +22,11 @@ void    DFS(vector<vector<char>>&, int, int, int, int);
 
 int     main(void)
 {
-        string                  s;
-        int                     i, j, R, C, count;
+        deque<pair<int, int>>   Q;
         vector<int>             dr = {-1, 0, 1,  0};
         vector<int>             dc = { 0, 1, 0, -1};
+        string                  s;
+        int                     i, j, R, C, count;
 
         cin >> R >> C;
 
@@ -47,11 +48,10 @@ int     main(void)
             j = -1;
             while (++j < C)
             {
-                if (!DOTS[i][j] || SEEN[i][j])  continue ;
-                
-                deque<pair<int, int>>   Q;
+                //deque<pair<int, int>>   Q;    // could be outside or here
 
-                count ++ ;
+                if (!DOTS[i][j] || SEEN[i][j])  continue ;
+                count ++;
                 Q.push_back({ i, j });
                 while (!Q.empty())
                 {
@@ -67,7 +67,6 @@ int     main(void)
                 }
             }
         }
-
         cout << count << endl;
 
         return (0);
