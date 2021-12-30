@@ -12,9 +12,8 @@
 /* ****************************************************************** nuo *** */
 
 #include <iostream>
-#include <deque>
-#include <tuple>
 #include <vector>
+#include <stack>
 
 using   namespace std;
 
@@ -22,9 +21,7 @@ void    DFS(vector<vector<char>>&, int, int, int, int);
 
 int     main(void)
 {
-        deque<pair<int, int>>   Q;
-        vector<int>             dr = {-1, 0, 1,  0};
-        vector<int>             dc = { 0, 1, 0, -1};
+        stack<pair<int, int>>   S;
         string                  s;
         int                     i, j, R, C, count;
 
@@ -38,7 +35,7 @@ int     main(void)
         {
             cin >> s;
             j = -1;
-            while (++j < C) DOTS[i][j] = (s[j] == '.');
+            while (++ j < C) if ( s[j] == '.' ) DOTS[i][j] = true;
         }
 
         i = -1;
@@ -48,22 +45,22 @@ int     main(void)
             j = -1;
             while (++j < C)
             {
-                //deque<pair<int, int>>   Q;    // could be outside or here
-
                 if (!DOTS[i][j] || SEEN[i][j])  continue ;
                 count ++;
-                Q.push_back({ i, j });
-                while (!Q.empty())
+                S.push({ i, j });
+                while (!S.empty())
                 {
-                    int     r, c, d;
+                    int r, c;
 
-                    tie(r, c) = Q.front();
-                    Q.pop_front() ;
+                    tie(r, c) = S.top();
+                    S.pop() ;
                     if (r >= R || r < 0 || c >= C || c < 0) continue;
-                    if (!DOTS[r][c] || SEEN[r][c])  continue;
+                    if (!DOTS[r][c] || SEEN[r][c])          continue;
                     SEEN[r][c] = true;
-                    d = -1;
-                    while (++d < 4) Q.push_back({r + dr[d], c + dc[d]});
+                    S.push( {r - 1, c} );
+                    S.push( {r + 1, c} );
+                    S.push( {r, c + 1} );
+                    S.push( {r, c - 1} );
                 }
             }
         }
