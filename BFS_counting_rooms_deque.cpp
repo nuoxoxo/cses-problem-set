@@ -14,6 +14,7 @@
 #include <iostream>
 #include <deque>
 #include <vector>
+#include <tuple> // tie
 
 using   namespace std;
 

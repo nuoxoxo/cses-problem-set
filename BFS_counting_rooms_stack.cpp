@@ -14,6 +14,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <tuple> // tie
 
 using   namespace std;
 
