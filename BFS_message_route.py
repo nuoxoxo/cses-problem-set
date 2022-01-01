@@ -33,13 +33,13 @@ Seen = [False for _ in range(n)]
 Seen[0] = True
 
 while Q:
-    print(Parent)
+    #print(Parent)
     x = Q.popleft()
     if x == n - 1:
         route = [x]
         while Parent[x] is not None:
-            route.append(x)
             x = Parent[x]
+            route.append(x)
         route = [str(x + 1) for x in reversed(route)]
         print(len(route))
         print(' '.join(route))
