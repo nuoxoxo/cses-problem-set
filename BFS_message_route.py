@@ -11,7 +11,6 @@
 #*                                                                            *#
 #* ****************************************************************** nuo *** *#
 
-from collections import deque
 import sys
 
 n, m = [int(x) for x in input().split()]
@@ -25,16 +24,14 @@ for _ in range(m):
     E[a].append(b)
     E[b].append(a)
 
-Q = deque()
-Q.append(0)
-
 Parent = [None for _ in range(n)]
 Seen = [False for _ in range(n)]
 Seen[0] = True
+Q = [0]
 
 while Q:
     #print(Parent)
-    x = Q.popleft()
+    x = Q.pop(0)
     if x == n - 1:
         route = [x]
         while Parent[x] is not None:

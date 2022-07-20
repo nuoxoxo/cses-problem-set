@@ -1,12 +1,12 @@
-N = int(input())
-R = []
-while not N == 1:
-    R.append(int(N))
-    if N % 2 == 0:
-        N /= 2
+n = int(input())
+res = []
+while n != 1:
+    res.append(int(n))
+    if n % 2 == 0:
+        n /= 2
     else:
-        N = N * 3 + 1
-if not len(R) or R[-1] != 1:
-    R.append(1)
-R = [str(x) for x in R]
-print(' '.join(R))
+        n = n * 3 + 1
+if len(res) == 0 or res[-1] != 1:
+    res.append(1)
+res = [str(x) for x in res]
+print(' '.join(res))
